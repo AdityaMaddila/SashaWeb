@@ -28,162 +28,22 @@ import { FeatureCard } from "@/components/feature-card";
 import { HowItWorks } from "@/components/how-it-works";
 import { UseCaseCard } from "@/components/use-case-card";
 import { TestimonialCard } from "@/components/testimonial-card";
-import { HamburgerMenu } from "@/components/HamburgerMenu";
 import { GrantsSection } from "@/components/GrantsSection";
 import TeamSection from "@/components/TeamSection";
+import { FuturisticNavbar } from "@/components/FuturisticNavbar";
+import { AnimatedHeroSection } from "@/components/AnimatedHeroSection";
 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col">
-      {/* Header - Changed from sticky to fixed */}
-      <header className="fixed top-0 left-0 right-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Image src="/SASHA_LOGO.png" alt="LOGO" width={32} height={32} />
-            <span className="lg:text-xl text-sm tracking-tight font-semibold">
-              Sasha Innoworks
-            </span>
-          </div>
+      {/* Futuristic Navbar with integrated hamburger menu */}
+      <FuturisticNavbar />
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
-            <Link
-              href="#features"
-              className="text-sm font-medium hover:text-[#FB930Bff] transition-colors"
-            >
-              Features
-            </Link>
-            <Link
-              href="#how-it-works"
-              className="text-sm font-medium hover:text-[#FB930Bff] transition-colors"
-            >
-              How It Works
-            </Link>
-            <Link
-              href="#grants"
-              className="text-sm font-medium hover:text-[#FB930Bff] transition-colors"
-            >
-              Grants
-            </Link>
-            <Link
-              href="#team"
-              className="text-sm font-medium hover:text-[#FB930Bff] transition-colors"
-            >
-              Team
-            </Link>
-            <Link
-              href="#use-cases"
-              className="text-sm font-medium hover:text-[#FB930Bff] transition-colors"
-            >
-              Use Cases
-            </Link>
-            <Link
-              href="#about"
-              className="text-sm font-medium hover:text-[#FB930Bff] transition-colors"
-            >
-              About Us
-            </Link>
-            <Link
-              href="#contact"
-              className="text-sm font-medium hover:text-[#FB930Bff] transition-colors"
-            >
-              Contact
-            </Link>
-          </nav>
-
-          {/* Desktop Get Started Button */}
-          {/* <Link href="#contact" className="hidden md:inline-block items-center">
-            <Button className="bg-[#FB930Bff] hover:bg-[#FB930Bff]/75 text-yellow-100">
-              Get Started
-            </Button>
-          </Link> */}
-        </div>
-      </header>
-
-      {/* Mobile Hamburger Menu - Positioned independently */}
-      <HamburgerMenu />
-
-      {/* Main Content - Added top padding to account for fixed header */}
-      <main className="flex-1 pt-16">
+      {/* Main Content */}
+      <main className="flex-1">
         {/* Hero Section */}
-        {/* <section className="relative py-12 md:py-24 overflow-hidden">
-          <div className="absolute inset-0 bg-yellow-50 dark:bg-yellow-950/20 -z-10" />
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-8 lg:grid-cols-2 lg:gap-12 items-center">
-              <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-                  Empowering Automation through{" "}
-                  <span className="text-[#FB930Bff]">
-                    AI, Robotics & Vision
-                  </span>
-                </h1>
-                <p className="text-xl text-muted-foreground md:max-w-[500px]">
-                  Sasha Innoworks builds intelligent automation that drives
-                  productivity, eliminates manual error, and accelerates growth
-                  for manufacturers worldwide.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                  <Button className="bg-[#FB930Bff] hover:bg-[#FB930Bff]/75 text-yellow-100">
-                    <Link href="#contact">Request Demo</Link>
-                  </Button>
-                  <Button variant="outline">Learn More</Button>
-                </div>
-              </div>
-              <div className="relative h-[400px] lg:h-[500px] rounded-xl overflow-hidden shadow-xl">
-                <Image
-                  src="/Hero.jpg"
-                  alt="Robotic arm with AI visualization"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-            </div>
-          </div>
-        </section> */}
-        <section
-          className="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: "url('/Hero.jpg')", // Replace with your image path
-          }}
-        >
-          {/* Dark overlay for better text readability */}
-          <div className="absolute inset-0 bg-black/40"></div>
+        <AnimatedHeroSection />
 
-          {/* Hero Content */}
-          <div className="relative z-10 container mx-auto px-4 text-center text-white">
-            <div className="max-w-4xl mx-auto">
-              {/* Main Heading */}
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                Welcome to Sasha Innoworks
-              </h1>
-
-              {/* Subtitle */}
-              <p className="text-lg md:text-xl lg:text-2xl mb-8 text-gray-200 max-w-2xl mx-auto leading-relaxed">
-                Transform your business with cutting-edge innovation and
-                technology solutions
-              </p>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Link href="#contact">
-                  <Button className="bg-[#FB930Bff] hover:bg-[#FB930Bff]/75 text-yellow-100 px-8 py-3 text-lg font-semibold rounded-lg transition-all transform hover:scale-105">
-                    Get Started
-                  </Button>
-                </Link>
-
-                <Link href="#features">
-                  <Button
-                    variant="outline"
-                    className="border-white text-black hover:bg-white hover:text-black px-8 py-3 text-lg font-semibold rounded-lg transition-all transform hover:scale-105"
-                  >
-                    Learn More
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* Features Section */}
         <section id="features" className="py-20 bg-white dark:bg-background">
