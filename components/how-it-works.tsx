@@ -13,24 +13,21 @@ export function HowItWorks({ step, icon, title, description }: HowItWorksProps) 
 
   return (
     <div className="relative group">
-      {/* Animated connector line (hidden on mobile, shown on md+) */}
- 
-
       <Card
-        className="h-full relative overflow-hidden border-2 transition-all duration-500 hover:border-[#FB930Bff] hover:-translate-y-2 hover:shadow-2xl"
+        className="h-full relative overflow-hidden border-2 border-gray-700 transition-all duration-500 hover:border-[#FB930Bff] hover:-translate-y-2 hover:shadow-2xl bg-gray-900"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         style={{
           background: isHovered
-            ? 'linear-gradient(135deg, rgba(251, 147, 11, 0.05) 0%, rgba(255, 255, 255, 1) 100%)'
-            : 'white',
+            ? 'linear-gradient(135deg, rgba(251, 147, 11, 0.15) 0%, rgba(31, 41, 55, 1) 100%)'
+            : 'linear-gradient(135deg, #1f2937 0%, #111827 100%)',
         }}
       >
         {/* Animated background gradient */}
         <div
           className="absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none"
           style={{
-            opacity: isHovered ? 0.1 : 0,
+            opacity: isHovered ? 0.15 : 0,
             background: 'radial-gradient(circle at 50% 0%, #FB930Bff, transparent 70%)',
           }}
         />
@@ -52,38 +49,37 @@ export function HowItWorks({ step, icon, title, description }: HowItWorksProps) 
 
         <CardHeader className="relative pt-8 pb-4">
           {/* Icon container with rotation animation */}
-<div
-  className="mb-4 inline-block transition-transform duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1)]"
-  style={{
-    transform: isHovered
-      ? 'perspective(600px) rotateY(360deg) scale(1)'
-      : 'perspective(600px) rotateY(0deg) scale(1)',
-  }}
->
-  <div
-    className={`p-3 mt-6 rounded-xl bg-gradient-to-br from-[#FB930B]/10 to-[#FB930B]/5 inline-block shadow-lg transition-shadow duration-500 ${
-      isHovered ? 'shadow-[#FB930B]/40' : ''
-    }`}
-  >
-    {icon}
-  </div>
-</div>
+          <div
+            className="mb-4 inline-block transition-transform duration-700 ease-[cubic-bezier(0.68,-0.55,0.27,1)]"
+            style={{
+              transform: isHovered
+                ? 'perspective(600px) rotateY(360deg) scale(1)'
+                : 'perspective(600px) rotateY(0deg) scale(1)',
+            }}
+          >
+            <div
+              className={`p-3 mt-6 rounded-xl bg-gradient-to-br from-[#FB930B]/20 to-[#FB930B]/10 inline-block shadow-lg transition-shadow duration-500 ${
+                isHovered ? 'shadow-[#FB930B]/60' : 'shadow-black/40'
+              }`}
+            >
+              {icon}
+            </div>
+          </div>
 
-
-          <CardTitle className="text-xl font-bold transition-colors duration-300 group-hover:text-[#FB930Bff]">
+          <CardTitle className="text-xl font-bold text-white transition-colors duration-300 group-hover:text-[#FB930Bff]">
             {title}
           </CardTitle>
         </CardHeader>
 
         <CardContent>
-          <p className="text-muted-foreground leading-relaxed">{description}</p>
+          <p className="text-gray-400 leading-relaxed">{description}</p>
 
           {/* Animated bottom accent bar */}
           <div className="mt-6 h-1 w-0 bg-gradient-to-r from-[#FB930Bff] to-[#d97a08] rounded-full transition-all duration-500 group-hover:w-full" />
         </CardContent>
 
         {/* Corner decoration */}
-        <div className="absolute bottom-0 right-0 w-20 h-20 opacity-5 transition-opacity duration-300 group-hover:opacity-10">
+        <div className="absolute bottom-0 right-0 w-20 h-20 opacity-10 transition-opacity duration-300 group-hover:opacity-20">
           <svg viewBox="0 0 100 100" className="w-full h-full">
             <circle cx="100" cy="100" r="80" fill="#FB930Bff" />
           </svg>

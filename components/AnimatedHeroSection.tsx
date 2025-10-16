@@ -31,13 +31,13 @@ export function AnimatedHeroSection() {
           <img src="/Hero.jpg" alt="Hero background" className="w-full h-full object-cover" />
         </video>
         
-        {/* Dark overlay with gradient */}
+        {/* Dark overlay with gradient
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60"></div>
         
         {/* Animated gradient overlay */}
-        <div 
+        {/* <div 
           className="absolute inset-0 bg-gradient-to-r from-[#FB930Bff]/20 via-transparent to-yellow-500/20 animate-gradientShift"
-        ></div>
+        ></div> */} 
       </div>
 
       {/* Content */}

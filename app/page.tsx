@@ -16,18 +16,15 @@ import {
   FastForward,
   Headphones,
   Layers,
-  Lightbulb,
-  ShieldCheck,
   Truck,
   Users,
-  Zap,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { ClientSection } from "@/components/client-section";
-import { FeatureCard, FeaturesSection } from "@/components/feature-card";
+import { FeaturesSection } from "@/components/feature-card";
 import { HowItWorks } from "@/components/how-it-works";
-import { UseCaseCard } from "@/components/use-case-card";
+import  UseCaseCard  from "@/components/use-case-card";
 import { TestimonialCard } from "@/components/testimonial-card";
 import { GrantsSection } from "@/components/GrantsSection";
 import TeamSection from "@/components/TeamSection";
@@ -36,30 +33,125 @@ import { AnimatedHeroSection } from "@/components/AnimatedHeroSection";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col relative">
+      {/* Global Background Styles */}
+      <style jsx global>{`
+        @keyframes shimmer {
+          0%, 100% {
+            background-position: 200% 0;
+          }
+          50% {
+            background-position: -200% 0;
+          }
+        }
+        
+        @keyframes float {
+          0%, 100% {
+            transform: translate(0, 0);
+          }
+          50% {
+            transform: translate(30px, -30px);
+          }
+        }
+
+        /* Global dark background with grid */
+        body {
+          background: #0a0a0a;
+        }
+      `}</style>
+
+      {/* Global Background Elements - Fixed position to cover entire page */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        {/* Circuit-like grid pattern - LIGHTER YELLOW */}
+        <div 
+          className="absolute inset-0 opacity-25"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(251, 147, 11, 0.4) 2px, transparent 2px),
+              linear-gradient(90deg, rgba(251, 147, 11, 0.4) 2px, transparent 2px),
+              linear-gradient(rgba(251, 147, 11, 0.2) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(251, 147, 11, 0.2) 1px, transparent 1px)
+            `,
+            backgroundSize: '100px 100px, 100px 100px, 20px 20px, 20px 20px',
+            backgroundPosition: '-2px -2px, -2px -2px, -1px -1px, -1px -1px',
+          }}
+        />
+        
+        {/* Glowing nodes at grid intersections - LIGHTER YELLOW */}
+        <div 
+          className="absolute inset-0 opacity-50"
+          style={{
+            backgroundImage: `radial-gradient(circle at center, rgba(251, 147, 11, 0.8) 1.5px, transparent 1.5px)`,
+            backgroundSize: '100px 100px',
+          }}
+        />
+        
+        {/* Vignette effect */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse at center, transparent 0%, rgba(10, 10, 10, 0.9) 100%)',
+          }}
+        />
+        
+        {/* Moving light effect */}
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{
+            background: 'linear-gradient(90deg, transparent 0%, rgba(251, 147, 11, 0.2) 50%, transparent 100%)',
+            backgroundSize: '200% 100%',
+            animation: 'shimmer 10s ease-in-out infinite',
+          }}
+        />
+        
+        {/* Glow spots */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div 
+            className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl"
+            style={{ 
+              background: 'radial-gradient(circle, rgba(251, 147, 11, 0.15) 0%, transparent 70%)',
+              animation: 'float 8s ease-in-out infinite',
+            }} 
+          />
+          <div 
+            className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-3xl"
+            style={{ 
+              background: 'radial-gradient(circle, rgba(251, 147, 11, 0.12) 0%, transparent 70%)',
+              animation: 'float 10s ease-in-out infinite reverse',
+            }} 
+          />
+          <div 
+            className="absolute top-1/2 left-1/3 w-[400px] h-[400px] rounded-full blur-3xl"
+            style={{ 
+              background: 'radial-gradient(circle, rgba(251, 147, 11, 0.1) 0%, transparent 70%)',
+              animation: 'float 12s ease-in-out infinite',
+              animationDelay: '2s',
+            }} 
+          />
+        </div>
+      </div>
+
       {/* Futuristic Navbar with integrated hamburger menu */}
-      <FuturisticNavbar />
+      <div className="relative z-50">
+        <FuturisticNavbar />
+      </div>
 
       {/* Main Content */}
-      <main className="flex-1">
+      <main className="flex-1 relative z-10">
         {/* Hero Section */}
         <AnimatedHeroSection />
-
 
         {/* Features Section */}
         <FeaturesSection />
 
         {/* How It Works Section */}
-        <section
-          id="how-it-works"
-          className="py-20 bg-yellow-50 dark:bg-yellow-950/20"
-        >
+        <section id="how-it-works" className="py-20 relative">
           <div className="container px-4 md:px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
                 How It Works
               </h2>
-              <p className="text-xl text-muted-foreground max-w-[800px] mx-auto">
+              <p className="text-xl text-gray-400 max-w-[800px] mx-auto">
                 Our three-step process makes implementing LLM-powered robotics
                 simple and effective.
               </p>
@@ -96,61 +188,22 @@ export default function Home() {
         </section>
 
         {/* Grants Section */}
-        <div className="py-20 bg-yellow-50 dark:bg-yellow-950/20"><GrantsSection /></div>
-          
-        
+        <GrantsSection />
 
         {/* Team Section */}
         <TeamSection />
 
         {/* Use Cases Section */}
-        <section id="use-cases" className="py-20 bg-yellow-50 dark:bg-yellow-950/20">
-          <div className="container px-4 md:px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Industry Use Cases
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-[800px] mx-auto">
-                See how our LLM-powered robotics solutions are transforming
-                industries across the globe.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              <ClientSection>
-                <UseCaseCard
-                  icon={<Factory className="h-10 w-10 text-[#FB930Bff]" />}
-                  title="Manufacturing"
-                  description="Intelligent assembly lines that adapt to production changes without reprogramming, reducing downtime by up to 60%."
-                />
-              </ClientSection>
-
-              <ClientSection>
-                <UseCaseCard
-                  icon={<Truck className="h-10 w-10 text-[#FB930Bff]" />}
-                  title="Logistics"
-                  description="Warehouse robots that understand complex instructions and optimize routing in real-time, improving efficiency by 45%."
-                />
-              </ClientSection>
-
-              <ClientSection>
-                <UseCaseCard
-                  icon={<Headphones className="h-10 w-10 text-[#FB930Bff]" />}
-                  title="Customer Support"
-                  description="Physical support robots that can understand customer needs and provide assistance in retail and service environments."
-                />
-              </ClientSection>
-            </div>
-          </div>
-        </section>
+        <UseCaseCard />
 
         {/* Testimonials Section */}
-        <section className="py-20 bg-yellow-50 dark:bg-yellow-950/20">
+        <section className="py-20 relative ">
           <div className="container px-4 md:px-6">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
                 Trusted by Industry Leaders
               </h2>
-              <p className="text-xl text-muted-foreground max-w-[800px] mx-auto">
+              <p className="text-xl text-gray-400 max-w-[800px] mx-auto">
                 See what our clients have to say about our revolutionary
                 technology.
               </p>
@@ -181,16 +234,16 @@ export default function Home() {
               </ClientSection>
             </div>
             <div className="mt-16">
-              <h3 className="text-xl font-semibold mb-8 text-center">
+              <h3 className="text-xl font-semibold mb-8 text-center text-white">
                 Our Clients
               </h3>
               <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
                 {[1, 2, 3, 4, 5].map((i) => (
                   <div
                     key={i}
-                    className="h-12 w-32 bg-muted rounded-md flex items-center justify-center"
+                    className="h-12 w-32 bg-gray-800 backdrop-blur-sm border border-[#FB930B]/20 rounded-md flex items-center justify-center hover:border-[#FB930B]/50 transition-colors duration-300"
                   >
-                    <span className="text-muted-foreground font-medium">
+                    <span className="text-gray-400 font-medium">
                       Logo {i}
                     </span>
                   </div>
@@ -201,10 +254,10 @@ export default function Home() {
         </section>
 
         {/* About Us Section */}
-        <section id="about" className="py-20 bg-yellow-50 dark:bg-yellow-950/20">
+        <section id="about" className="py-20 relative ">
           <div className="container px-4 md:px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-xl">
+              <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-xl border border-[#FB930B]/20">
                 <Image
                   src="/About.webp"
                   alt="Team working on robotics"
@@ -213,10 +266,10 @@ export default function Home() {
                 />
               </div>
               <div className="space-y-6">
-                <h2 className="text-3xl md:text-4xl font-bold text-center md:text-left">
+                <h2 className="text-3xl md:text-4xl font-bold text-center md:text-left text-white">
                   About Sasha Innoworks
                 </h2>
-                <p className="text-lg text-muted-foreground">
+                <p className="text-lg text-gray-300">
                   SASHA INNOWORKS PRIVATE LIMITED is a deep-tech company
                   headquartered at BITS Pilani – Hyderabad (Telangana, India).
                   Founded in August 2024 by Prof. Sandip S. Deshmukh and Mr.
@@ -227,7 +280,7 @@ export default function Home() {
                   logistics, automotive, and manufacturing, driving the future
                   of industrial innovation.
                 </p>
-                <p className="text-lg text-muted-foreground">
+                <p className="text-lg text-gray-300">
                   Our mission is to democratize advanced robotics by making
                   systems that understand human intent, adapt to changing
                   environments, and collaborate seamlessly with human workers.
@@ -235,17 +288,17 @@ export default function Home() {
                 <div className="flex gap-4">
                   <div className="text-center">
                     <h3 className="text-3xl font-bold text-[#FB930Bff]">50+</h3>
-                    <p className="text-sm text-muted-foreground">Engineers</p>
+                    <p className="text-sm text-gray-400">Engineers</p>
                   </div>
                   <div className="text-center">
                     <h3 className="text-3xl font-bold text-[#FB930Bff]">
                       100+
                     </h3>
-                    <p className="text-sm text-muted-foreground">Deployments</p>
+                    <p className="text-sm text-gray-400">Deployments</p>
                   </div>
                   <div className="text-center">
                     <h3 className="text-3xl font-bold text-[#FB930Bff]">12</h3>
-                    <p className="text-sm text-muted-foreground">Countries</p>
+                    <p className="text-sm text-gray-400">Countries</p>
                   </div>
                 </div>
               </div>
@@ -254,49 +307,46 @@ export default function Home() {
         </section>
 
         {/* Contact Section */}
-        <section
-          id="contact"
-          className="py-20 bg-yellow-50 dark:bg-yellow-950/20"
-        >
+        <section id="contact" className="py-20 relative ">
           <div className="container px-4 md:px-6">
             <div className="grid lg:grid-cols-2 gap-12">
               <div className="space-y-6">
-                <h2 className="text-3xl md:text-4xl font-bold">
+                <h2 className="text-3xl md:text-4xl font-bold text-white">
                   Ready to Transform Your Operations?
                 </h2>
-                <p className="text-xl text-muted-foreground">
+                <p className="text-xl text-gray-400">
                   Get in touch with our team to schedule a demo and see how
                   Sasha innoworks future‑proof your operations.
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center">
+                    <div className="h-10 w-10 rounded-full bg-[#FB930B]/20 backdrop-blur-sm border border-[#FB930B]/30 flex items-center justify-center">
                       <Users className="h-5 w-5 text-[#FB930Bff]" />
                     </div>
                     <div>
-                      <h3 className="font-medium">Sales Team</h3>
-                      <p className="text-sm text-muted-foreground">
+                      <h3 className="font-medium text-white">Sales Team</h3>
+                      <p className="text-sm text-gray-400">
                         sales@sasha.tech
                       </p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center">
+                    <div className="h-10 w-10 rounded-full bg-[#FB930B]/20 backdrop-blur-sm border border-[#FB930B]/30 flex items-center justify-center">
                       <Headphones className="h-5 w-5 text-[#FB930Bff]" />
                     </div>
                     <div>
-                      <h3 className="font-medium">Support</h3>
-                      <p className="text-sm text-muted-foreground">
+                      <h3 className="font-medium text-white">Support</h3>
+                      <p className="text-sm text-gray-400">
                         support@sasha.tech
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
-              <Card className="shadow-lg">
+              <Card className="shadow-lg bg-gray-900 border-[#FB930B]/30">
                 <CardHeader>
-                  <CardTitle>Contact Us</CardTitle>
-                  <CardDescription>
+                  <CardTitle className="text-white">Contact Us</CardTitle>
+                  <CardDescription className="text-gray-400">
                     Fill out the form below and we'll get back to you within 24
                     hours.
                   </CardDescription>
@@ -307,48 +357,50 @@ export default function Home() {
                       <div className="space-y-2">
                         <label
                           htmlFor="first-name"
-                          className="text-sm font-medium"
+                          className="text-sm font-medium text-gray-300"
                         >
                           First Name
                         </label>
-                        <Input id="first-name" placeholder="" />
+                        <Input id="first-name" placeholder="" className="bg-gray-800 border-gray-700 text-white" />
                       </div>
                       <div className="space-y-2">
                         <label
                           htmlFor="last-name"
-                          className="text-sm font-medium"
+                          className="text-sm font-medium text-gray-300"
                         >
                           Last Name
                         </label>
-                        <Input id="last-name" placeholder="" />
+                        <Input id="last-name" placeholder="" className="bg-gray-800 border-gray-700 text-white" />
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="email" className="text-sm font-medium">
+                      <label htmlFor="email" className="text-sm font-medium text-gray-300">
                         Email
                       </label>
                       <Input
                         id="email"
                         type="email"
                         placeholder="robert@example.com"
+                        className="bg-gray-800 border-gray-700 text-white"
                       />
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="company" className="text-sm font-medium">
+                      <label htmlFor="company" className="text-sm font-medium text-gray-300">
                         Company
                       </label>
-                      <Input id="company" placeholder="Your company" />
+                      <Input id="company" placeholder="Your company" className="bg-gray-800 border-gray-700 text-white" />
                     </div>
                     <div className="space-y-2">
-                      <label htmlFor="message" className="text-sm font-medium">
+                      <label htmlFor="message" className="text-sm font-medium text-gray-300">
                         Message
                       </label>
                       <Textarea
                         id="message"
                         placeholder="Tell us about your project and requirements..."
+                        className="bg-gray-800 border-gray-700 text-white"
                       />
                     </div>
-                    <Button className="w-full bg-[#FB930Bff] hover:bg-[#FB930Bff]/75 text-yellow-100">
+                    <Button className="w-full bg-gradient-to-r from-[#FB930Bff] to-orange-600 hover:from-orange-600 hover:to-[#FB930Bff] text-white">
                       Send Message
                     </Button>
                   </form>
@@ -360,7 +412,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t py-12 bg-background">
+      <footer className="border-t border-[#FB930B]/20 py-12 bg-gray-950/50 backdrop-blur-sm relative z-10">
         <div className="container px-4 md:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="space-y-2 md:space-y-4">
@@ -380,20 +432,20 @@ export default function Home() {
                     height={24}
                     className="lg:block hidden"
                   />
-                  <span className="font-bold">SASHA INNOWORKS</span>
+                  <span className="font-bold text-white">SASHA INNOWORKS</span>
                 </div>
               </div>
-              <p className="text-sm text-muted-foreground text-wrap">
+              <p className="text-sm text-gray-400 text-wrap">
                 Empowering Automation through AI, Robotics & Vision.
               </p>
             </div>
             <div>
-              <h3 className="font-medium mb-4">Product</h3>
+              <h3 className="font-medium mb-4 text-white">Product</h3>
               <ul className="space-y-2 text-sm">
                 <li>
                   <Link
                     href="#"
-                    className="text-muted-foreground hover:text-yellow-500"
+                    className="text-gray-400 hover:text-[#FB930Bff] transition-colors"
                   >
                     Features
                   </Link>
@@ -401,7 +453,7 @@ export default function Home() {
                 <li>
                   <Link
                     href="#"
-                    className="text-muted-foreground hover:text-yellow-500"
+                    className="text-gray-400 hover:text-[#FB930Bff] transition-colors"
                   >
                     Pricing
                   </Link>
@@ -409,7 +461,7 @@ export default function Home() {
                 <li>
                   <Link
                     href="#"
-                    className="text-muted-foreground hover:text-yellow-500"
+                    className="text-gray-400 hover:text-[#FB930Bff] transition-colors"
                   >
                     Documentation
                   </Link>
@@ -417,7 +469,7 @@ export default function Home() {
                 <li>
                   <Link
                     href="#"
-                    className="text-muted-foreground hover:text-yellow-500"
+                    className="text-gray-400 hover:text-[#FB930Bff] transition-colors"
                   >
                     API
                   </Link>
@@ -425,12 +477,12 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h3 className="font-medium mb-4">Company</h3>
+              <h3 className="font-medium mb-4 text-white">Company</h3>
               <ul className="space-y-2 text-sm">
                 <li>
                   <Link
                     href="#"
-                    className="text-muted-foreground hover:text-yellow-500"
+                    className="text-gray-400 hover:text-[#FB930Bff] transition-colors"
                   >
                     About Us
                   </Link>
@@ -438,7 +490,7 @@ export default function Home() {
                 <li>
                   <Link
                     href="#"
-                    className="text-muted-foreground hover:text-yellow-500"
+                    className="text-gray-400 hover:text-[#FB930Bff] transition-colors"
                   >
                     Careers
                   </Link>
@@ -446,7 +498,7 @@ export default function Home() {
                 <li>
                   <Link
                     href="#"
-                    className="text-muted-foreground hover:text-yellow-500"
+                    className="text-gray-400 hover:text-[#FB930Bff] transition-colors"
                   >
                     Blog
                   </Link>
@@ -454,7 +506,7 @@ export default function Home() {
                 <li>
                   <Link
                     href="#"
-                    className="text-muted-foreground hover:text-yellow-500"
+                    className="text-gray-400 hover:text-[#FB930Bff] transition-colors"
                   >
                     Press
                   </Link>
@@ -462,12 +514,12 @@ export default function Home() {
               </ul>
             </div>
             <div>
-              <h3 className="font-medium mb-4">Legal</h3>
+              <h3 className="font-medium mb-4 text-white">Legal</h3>
               <ul className="space-y-2 text-sm">
                 <li>
                   <Link
                     href="#"
-                    className="text-muted-foreground hover:text-yellow-500"
+                    className="text-gray-400 hover:text-[#FB930Bff] transition-colors"
                   >
                     Privacy Policy
                   </Link>
@@ -475,7 +527,7 @@ export default function Home() {
                 <li>
                   <Link
                     href="#"
-                    className="text-muted-foreground hover:text-yellow-500"
+                    className="text-gray-400 hover:text-[#FB930Bff] transition-colors"
                   >
                     Terms of Service
                   </Link>
@@ -483,7 +535,7 @@ export default function Home() {
                 <li>
                   <Link
                     href="#"
-                    className="text-muted-foreground hover:text-yellow-500"
+                    className="text-gray-400 hover:text-[#FB930Bff] transition-colors"
                   >
                     Cookie Policy
                   </Link>
@@ -491,14 +543,14 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          <div className="mt-12 pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground">
+          <div className="mt-12 pt-8 border-t border-[#FB930B]/20 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-gray-400">
               © {new Date().getFullYear()} SASHA INNOWORKS. All rights reserved.
             </p>
             <div className="flex gap-4">
               <Link
                 href="#"
-                className="text-muted-foreground hover:text-yellow-500"
+                className="text-gray-400 hover:text-[#FB930Bff] transition-colors"
               >
                 <span className="sr-only">Twitter</span>
                 <svg
@@ -518,7 +570,7 @@ export default function Home() {
               </Link>
               <Link
                 href="#"
-                className="text-muted-foreground hover:text-yellow-500"
+                className="text-gray-400 hover:text-[#FB930Bff] transition-colors"
               >
                 <span className="sr-only">LinkedIn</span>
                 <svg
@@ -540,7 +592,7 @@ export default function Home() {
               </Link>
               <Link
                 href="#"
-                className="text-muted-foreground hover:text-yellow-500"
+                className="text-gray-400 hover:text-[#FB930Bff] transition-colors"
               >
                 <span className="sr-only">GitHub</span>
                 <svg

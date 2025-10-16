@@ -19,9 +19,9 @@ function FeatureCard({ icon, title, description }: FeatureCardProps) {
         boxShadow: "0 10px 25px rgba(251,147,11,0.15)",
         transition: { type: "spring", stiffness: 200, damping: 15 },
       }}
-      className="h-full"
+      className="h-full group"
     >
-      <Card className="h-full shadow-md hover:shadow-lg transition-all duration-300 border-yellow-200 dark:border-yellow-900/50">
+      <Card className="h-full shadow-md hover:shadow-lg transition-all duration-300 border-gray-700 dark:border-yellow-900/50 bg-gray-900 dark:bg-gray-900 group-hover:bg-gradient-to-br group-hover:from-gray-800 group-hover:to-gray-900 dark:group-hover:from-[rgba(251,147,11,0.1)] dark:group-hover:to-gray-900">
         <CardHeader className="flex flex-col items-center text-center">
           <motion.div
             animate={{ rotate: 360 }}
@@ -34,10 +34,10 @@ function FeatureCard({ icon, title, description }: FeatureCardProps) {
           >
             {icon}
           </motion.div>
-          <CardTitle className="text-lg font-semibold">{title}</CardTitle>
+          <CardTitle className="text-lg font-semibold text-white">{title}</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground text-center">{description}</p>
+          <p className="text-gray-400 text-center">{description}</p>
         </CardContent>
       </Card>
     </motion.div>
@@ -75,7 +75,7 @@ export function FeaturesSection() {
   return (
     <section
       id="features"
-      className="py-20 bg-yellow-50 dark:bg-yellow-950/20 scroll-mt-20"
+      className="py-20 scroll-mt-20 "
     >
       <div className="container px-4 md:px-6">
         {/* Section header */}
@@ -89,7 +89,7 @@ export function FeaturesSection() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-[#FB930B] to-[#ffbb33] bg-clip-text text-transparent">
             Powerful Features
           </h2>
-          <p className="text-xl text-muted-foreground max-w-[800px] mx-auto">
+          <p className="text-xl text-gray-400 max-w-[800px] mx-auto">
             Our platform combines cutting-edge LLM technology with advanced
             robotics to deliver unprecedented automation capabilities.
           </p>
