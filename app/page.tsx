@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -24,7 +25,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { ClientSection } from "@/components/client-section";
-import { FeatureCard } from "@/components/feature-card";
+import { FeatureCard, FeaturesSection } from "@/components/feature-card";
 import { HowItWorks } from "@/components/how-it-works";
 import { UseCaseCard } from "@/components/use-case-card";
 import { TestimonialCard } from "@/components/testimonial-card";
@@ -46,52 +47,7 @@ export default function Home() {
 
 
         {/* Features Section */}
-        <section id="features" className="py-20 bg-white dark:bg-background">
-          <div className="container px-4 md:px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Powerful Features
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-[800px] mx-auto">
-                Our platform combines cutting-edge LLM technology with advanced
-                robotics to deliver unprecedented automation capabilities.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <ClientSection>
-                <FeatureCard
-                  icon={<Brain className="h-10 w-10 text-[#FB930Bff]" />}
-                  title="Natural Language Control"
-                  description="Control robotic systems using natural language commands that are interpreted contextually."
-                />
-              </ClientSection>
-
-              <ClientSection>
-                <FeatureCard
-                  icon={<Lightbulb className="h-10 w-10 text-[#FB930Bff]" />}
-                  title="Adaptive Learning"
-                  description="Systems that learn from interactions and improve performance over time through continuous feedback."
-                />
-              </ClientSection>
-
-              <ClientSection>
-                <FeatureCard
-                  icon={<ShieldCheck className="h-10 w-10 text-[#FB930Bff]" />}
-                  title="Enhanced Safety"
-                  description="Advanced predictive algorithms that anticipate and prevent potential safety issues."
-                />
-              </ClientSection>
-
-              <ClientSection>
-                <FeatureCard
-                  icon={<Zap className="h-10 w-10 text-[#FB930Bff]" />}
-                  title="Real-time Processing"
-                  description="Process and respond to complex inputs in milliseconds for seamless human-machine interaction."
-                />
-              </ClientSection>
-            </div>
-          </div>
-        </section>
+        <FeaturesSection />
 
         {/* How It Works Section */}
         <section
@@ -140,15 +96,15 @@ export default function Home() {
         </section>
 
         {/* Grants Section */}
-        <ClientSection>
-          <GrantsSection />
-        </ClientSection>
+        <div className="py-20 bg-yellow-50 dark:bg-yellow-950/20"><GrantsSection /></div>
+          
+        
 
         {/* Team Section */}
         <TeamSection />
 
         {/* Use Cases Section */}
-        <section id="use-cases" className="py-20 bg-white dark:bg-background">
+        <section id="use-cases" className="py-20 bg-yellow-50 dark:bg-yellow-950/20">
           <div className="container px-4 md:px-6">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -245,7 +201,7 @@ export default function Home() {
         </section>
 
         {/* About Us Section */}
-        <section id="about" className="py-20 bg-white dark:bg-background">
+        <section id="about" className="py-20 bg-yellow-50 dark:bg-yellow-950/20">
           <div className="container px-4 md:px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-xl">
