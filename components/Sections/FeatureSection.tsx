@@ -21,7 +21,14 @@ function FeatureCard({ icon, title, description }: FeatureCardProps) {
       }}
       className="h-full group"
     >
-      <Card className="h-full shadow-md hover:shadow-lg transition-all duration-300 border-gray-700 dark:border-yellow-900/50 bg-gray-900 dark:bg-gray-900 group-hover:bg-gradient-to-br group-hover:from-gray-800 group-hover:to-gray-900 dark:group-hover:from-[rgba(251,147,11,0.1)] dark:group-hover:to-gray-900">
+      <Card className="h-full shadow-md hover:shadow-lg transition-all duration-300 backdrop-blur-md
+backdrop-blur-xl
+bg-grey/10
+bg-grey/15
+bg-grey/20
+border-white/15
+border-white/20
+border-white/30">
         <CardHeader className="flex flex-col items-center text-center">
           <motion.div
             animate={{ rotate: 360 }}
